@@ -17,15 +17,18 @@
 
     <div class="col-lg-6">
       <h3> Loguearse </h3>
-      <form class="col-md-8 ">
+      <form #loginForm="ngForm" (ngSubmit)="onSumbit()" class="col-md-8 ">
+
         <div class="form-group">
           <label> Correo electronico </label>
-          <input type="email" class="form-control form-control-sm" required/>
+          <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" class="form-control form-control-sm" required/>
+          <small *ngIf="!email.valid && email.touhed" class="form-text text-danger">El email es obligatorio</small>
         </div>
 
         <div class="form-group">
           <label> Contraseña </label>
-          <input type="password" class="form-control form-control-sm" required/>
+          <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" class="form-control form-control-sm" required/>
+          <small *ngIf="!password.valid && password.touhed" class="form-text text-danger">Ingrese la contrseña</small>
         </div>
 
         <input type="submit" value="Entrar" class="btn btn-primary btn-sm" />
