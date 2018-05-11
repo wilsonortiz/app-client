@@ -4,6 +4,12 @@
     <h1>
    {{ title }}
   </h1>
+    <span>
+  {{identity.name}} {{identity.surname}}
+</span>
+    <span class="btn btn-warning" (click)="logout()">
+Cerrar sesión
+</span>
   </div>
 
   <div class="clearfix"></div>
@@ -17,6 +23,12 @@
 
     <div class="col-lg-6">
       <h3> Loguearse </h3>
+      <div *ngIf="loginError">
+        <div class="alert alert-danger" role="alert">
+          <strong>Error</strong> {{loginError}}
+        </div>
+
+      </div>
       <form #loginForm="ngForm" (ngSubmit)="onSumbit()" class="col-md-8 ">
 
         <div class="form-group">
