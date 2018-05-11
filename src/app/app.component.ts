@@ -19,9 +19,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    var texto = this.userService.sigup();
+    console.log(texto);
   }
 
+  //metodo que se carga cuando pulsamos el botón "Entrar"
   public onSumbit() {
     console.log(this.user);
   }
