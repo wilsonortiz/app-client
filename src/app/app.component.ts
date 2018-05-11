@@ -20,7 +20,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.identity = this.userService.getidentity();
+    this.token = this.userService.getToken();
 
+    console.log(this.identity);
+    console.log(this.token);
   }
 
   //metodo que se carga cuando pulsamos el botón "Entrar"
@@ -36,6 +40,9 @@ export class AppComponent implements OnInit {
 
       } else {
         //Session el localStorage para guardarlo
+        localStorage.setItem('identity', JSON.stringify(identity));
+
+        //get token
         this.userService.sigup(this.user, 'true').subscribe(res => {
           this.loginError = "";
 
@@ -46,6 +53,9 @@ export class AppComponent implements OnInit {
             alert("El token no se ha generado correctamente");
 
           } else {
+
+            localStorage.setItem('token', token);
+
             console.log(token);
             console.log(identity);
           }
