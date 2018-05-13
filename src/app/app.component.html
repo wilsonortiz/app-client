@@ -25,22 +25,22 @@ Cerrar sesión
       <h3> Loguearse </h3>
       <div *ngIf="loginError">
         <div class="alert alert-danger" role="alert">
-          <strong>Error</strong> {{loginError}}
+          <strong> {{loginError}}</strong>
         </div>
-
       </div>
+
       <form #loginForm="ngForm" (ngSubmit)="onSumbit()" class="col-md-8 ">
 
         <div class="form-group">
           <label> Correo electronico </label>
           <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" class="form-control form-control-sm" required/>
-          <small *ngIf="!email.valid && email.touhed" class="form-text text-danger">El email es obligatorio</small>
+          <small *ngIf="email.invalid && email.touched" class="form-text text-danger">El email es obligatorio</small>
         </div>
 
         <div class="form-group">
           <label> Contraseña </label>
           <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" class="form-control form-control-sm" required/>
-          <small *ngIf="!password.valid && password.touhed" class="form-text text-danger">Ingrese la contrseña</small>
+          <small *ngIf="password.invalid && password.touched" class="form-text text-danger">Ingrese la contrseña</small>
         </div>
 
         <input type="submit" value="Entrar" class="btn btn-primary btn-sm" />
@@ -52,26 +52,36 @@ Cerrar sesión
     <div class="col-lg-6">
 
       <h3> Registrarse </h3>
-      <form class="col-md-8 ">
+      <div *ngIf="registerMessage">
+        <div class="alert alert-success" role="alert">
+          <strong> {{registerMessage}}</strong>
+        </div>
+      </div>
+
+      <form #registerForm="ngForm" (ngSubmit)="onSumbitRegister()" class="col-md-8 ">
 
         <div class="form-group">
           <label> Nombre: </label>
-          <input type="text" class="form-control form-control-sm" required/>
+          <input #name="ngModel" type="text" name="name" [(ngModel)]="userRegister.name" class="form-control form-control-sm" required/>
+          <small *ngIf="!name.valid && name.touhed" class="form-text text-danger">El nombre es obligatorio</small>
         </div>
 
         <div class="form-group">
           <label> Apellidos:</label>
-          <input type="password" class="form-control form-control-sm" required/>
+          <input #surname="ngModel" type="text" name="surname" [(ngModel)]="userRegister.surname" class="form-control form-control-sm" required/>
+          <small *ngIf="!surname.valid && surname.touched" class="form-text text-danger">El apellido es obligatorio</small>
         </div>
 
         <div class="form-group">
           <label> Correo electronico </label>
-          <input type="email" class="form-control form-control-sm" required/>
+          <input #email="ngModel" type="email" name="email" [(ngModel)]="userRegister.email" class="form-control form-control-sm" required/>
+          <small *ngIf="!email.valid && email.touhed" class="form-text text-danger">El email es obligatorio</small>
         </div>
 
         <div class="form-group">
           <label> Contraseña </label>
-          <input type="password" class="form-control form-control-sm" required/>
+          <input #password="ngModel" type="password" name="password" [(ngModel)]="userRegister.password" class="form-control form-control-sm" required/>
+          <small *ngIf="!password.valid && password.touhed" class="form-text text-danger">La password es obligatoria</small>
         </div>
 
         <input type="submit" value="Registrar" class="btn btn-primary btn-sm" />

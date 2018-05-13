@@ -10,7 +10,7 @@ export class UserService {
   public identity;
   public token;
 
-  constructor(private _http: Http) {
+  constructor(private http: Http) {
     this.url = GLOBAL.url;
 
   }
@@ -25,11 +25,21 @@ export class UserService {
     let params = json;
     let headers = new Headers({ 'Content-Type': 'application/json' });
 
-    return this._http.post(this.url + 'login', params, { headers: headers })
+    return this.http.post(this.url + 'login', params, { headers: headers })
       .pipe(map(res => res.json()));
   }
 
-  getidentity() {
+  public register(user_register) {
+
+    let json = JSON.stringify(user_register);
+    let params = json;
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+
+    return this.http.post(this.url + 'register', params, { headers: headers })
+      .pipe(map(res => res.json()));
+  }
+
+  public getidentity() {
     let identity = JSON.parse(localStorage.getItem('identity'));
 
     if (identity != "undefined") {
@@ -42,7 +52,7 @@ export class UserService {
     return this.identity;
   }
 
-  getToken() {
+  public getToken() {
 
     let token = localStorage.getItem('token');
 
