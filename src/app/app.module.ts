@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
+import { AppHome } from './components/home/app.home.component';
 import { HttpModule } from "@angular/http";
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppHome,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -15,6 +17,6 @@ import { HttpModule } from "@angular/http";
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppHome]
 })
 export class AppModule { }

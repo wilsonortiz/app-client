@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './services/user.service';
-import { User } from './models/user';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.home.component.html',
   providers: [UserService]
 })
 
-export class AppComponent implements OnInit {
+export class AppHome implements OnInit {
   public title = 'music';
   public user: User;
   public userRegister: User;
