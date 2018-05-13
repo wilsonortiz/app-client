@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
 
         } else {
           this.registerMessage = "El registro se ha realizado correctamente, identificate con " + this.userRegister.email;
-          this.userRegister = '';
+          this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '');
         }
       },
       err => {
