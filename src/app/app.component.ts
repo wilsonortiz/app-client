@@ -58,9 +58,7 @@ export class AppComponent implements OnInit {
           } else {
 
             localStorage.setItem('token', token);
-
-            console.log(token);
-            console.log(identity);
+            this.user = new User('', '', '', '', '', 'ROLE_USER', '');
           }
 
         },
@@ -99,7 +97,7 @@ export class AppComponent implements OnInit {
 
         } else {
           this.registerMessage = "El registro se ha realizado correctamente, identificate con " + this.userRegister.email;
-          this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '');
+          this.userRegister = '';
         }
       },
       err => {
