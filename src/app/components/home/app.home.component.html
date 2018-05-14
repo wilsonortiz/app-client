@@ -1,22 +1,44 @@
 <div class="container">
 
-  <div *ngIf="identity" class="navigation col-lg-1">
+  <div *ngIf="identity">
     <h1>
    {{ title }}
   </h1>
-    <span>
-  {{identity.name}} {{identity.surname}}
-</span>
-    <span class="btn btn-warning" (click)="logout()">
-Cerrar sesión
-</span>
+
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-wrench " aria-hidden="true"></i> &nbsp; Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-wrench" aria-hidden="true"></i> &nbsp; Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/mis-datos']"><i class="fa fa-wrench " aria-hidden="true"></i>&nbsp; Mis datos</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="logout()" class="nav-link"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> &nbsp; Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
   </div>
+
+
 
   <div class="clearfix"></div>
 
   <div *ngIf="identity" class="central col-lg-11">
     <p> Estas logueado en la app</p>
-    <app-user-edit></app-user-edit>
+    <router-outlet></router-outlet>
   </div>
 
 
