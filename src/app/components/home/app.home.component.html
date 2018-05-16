@@ -5,6 +5,7 @@
    {{ title }}
   </h1>
 
+    <!--Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,9 +26,18 @@
           <li class="nav-item">
             <a (click)="logout()" class="nav-link"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> &nbsp; Cerrar sesión</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">
+              <span id="nameLogued">{{identity.name}} </span> &nbsp;  <img id="imageLogued"  src="{{url + 'get-image-user/' + identity.image}}" style="width:25px; height: 25px; border-radius: 80%;" />
+            </a>
+            <div *ngIf="identity.image && identity.image != 'null'" class="form-group row">
+
+            </div>
+          </li>
         </ul>
       </div>
     </nav>
+    <!-- Fin Barra de navegación -->
 
 
   </div>
@@ -37,7 +47,7 @@
   <div class="clearfix"></div>
 
   <div *ngIf="identity" class="central col-lg-11">
-    <p> Estas logueado en la app</p>
+    <!-- <p> Estas logueado en la app</p> -->
     <router-outlet></router-outlet>
   </div>
 
