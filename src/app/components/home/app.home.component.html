@@ -10,11 +10,11 @@
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 			Buscar
 		</a>
-		<a href="#">
+		<a [routerLink]="['artistas', 1]" [routerLinkActive] ="['actived']">
 			<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 			Artistas
 		</a>
-		<a href="#">
+		<a href="">
 			<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
 			Albums
 		</a>
@@ -28,7 +28,7 @@
 			{{identity.name}}
 		</span>
 
-		<a href="#">
+		<a [routerLink] = "['mis-datos']" [routerLinkActive] ="['actived']">
 			<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 			Mis datos
 		</a>
@@ -52,7 +52,7 @@
 				<strong>Error</strong> {{errorMessage}}
 			</div>
 		</div>
-		<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7">
+		<form #loginForm="ngForm" (ngSubmit)="omSubmit()" class="col-md-7">
 			<p>
 				<label>Correo electrónico:</label>
 				<input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" class="form-control" required />
@@ -110,7 +110,7 @@
 				</span>
 			</p>
 
-			<input type="submit" value="Regristrarse" class="btn btn-primary" />
+			<input type="submit" value="Registrarse" class="btn btn-primary" />
 
 		</form> 
 	</div>

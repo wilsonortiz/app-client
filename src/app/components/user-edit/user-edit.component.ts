@@ -7,7 +7,6 @@ import { GLOBAL } from '../../services/global';
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   providers: [UserService]
-  //  styleUrls: ['./user-edit.component.css']
 })
 
 export class UserEditComponent implements OnInit {
@@ -41,35 +40,35 @@ export class UserEditComponent implements OnInit {
         }
         else {
           localStorage.setItem('identity', JSON.stringify(this.user));
-          document.getElementById("nameLogued").innerHTML = this.user.name;
+          document.getElementById("user_logged").innerHTML = this.user.name;
 
           if (!this.filesToUpload) {
             //Redirect
           } else {
             this.makeFilesRequest(this.url + 'upload-image/' + this.user._id, [], this.filesToUpload)
-              .then(
-                (result: any) => {
-                  this.user.image = result.image;
-                  localStorage.setItem('identity', JSON.stringify(this.user));
-                  let imagePath = this.url + 'get-image-user/' + this.user.image;
-                  document.getElementById("imageLogued").setAttribute('src', imagePath);
-                }
+            .then(
+              (result: any) => {
+                this.user.image = result.image;
+                localStorage.setItem('identity', JSON.stringify(this.user));
+                let imagePath = this.url + 'get-image-user/' + this.user.image;
+                document.getElementById("imageLogued").setAttribute('src', imagePath);
+              }
               ).catch(e => {
                 console.log(e);
               });
+            }
+            this.messageAlert = 'El usuario se ha actualizado correctamente';
           }
-          this.messageAlert = 'El usuario se ha actualizado correctamente';
-        }
 
-      },
-      err => {
-        let messageError = <any>err;
+        },
+        err => {
+          let messageError = <any>err;
 
-        if (messageError != null) {
-          let body = JSON.parse(err._body);
-          this.messageAlert = body.message;
-        }
-      });
+          if (messageError != null) {
+            let body = JSON.parse(err._body);
+            this.messageAlert = body.message;
+          }
+        });
 
   }
 

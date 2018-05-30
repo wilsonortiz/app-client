@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { GLOBAL } from '../../services/global';
+import { Router,ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,10 @@ export class AppHome implements OnInit {
   public registerMessage;
   public url: string;
 
-  constructor(private userService: UserService) {
+  constructor(private route:ActivatedRoute,
+    private router:Router,
+    private userService: UserService) {
+
     this.user = new User('', '', '', '', '', 'ROLE_USER', '');
     this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '');
     this.url = GLOBAL.url;
@@ -34,7 +38,7 @@ export class AppHome implements OnInit {
   }
 
   //metodo que se carga cuando pulsamos el botón "Entrar"
-  public onSumbit() {
+  public omSubmit() {
     this.userService.sigup(this.user).subscribe(res => {
       this.loginError = "";
 
@@ -65,25 +69,25 @@ export class AppHome implements OnInit {
           }
 
         },
-          err => {
-            let messageError = <any>err;
+        err => {
+          let messageError = <any>err;
 
-            if (messageError != null) {
-              let body = JSON.parse(err._body);
-              this.loginError = body.message;
-            }
-          });
+          if (messageError != null) {
+            let body = JSON.parse(err._body);
+            this.loginError = body.message;
+          }
+        });
       }
 
     },
-      err => {
-        let messageError = <any>err;
+    err => {
+      let messageError = <any>err;
 
-        if (messageError != null) {
-          let body = JSON.parse(err._body);
-          this.loginError = body.message;
-        }
-      });
+      if (messageError != null) {
+        let body = JSON.parse(err._body);
+        this.loginError = body.message;
+      }
+    });
   }
 
   public onSumbitRegister() {
@@ -119,5 +123,6 @@ export class AppHome implements OnInit {
     localStorage.clear();
     this.identity = null;
     this.token = null;
+    this.router.navigate(['/']);
   }
 }
