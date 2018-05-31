@@ -39,7 +39,7 @@ export class ArtistAddComponent implements OnInit {
 
 	}
 
-	public saveNewArtist(){
+	public onSubmit(){
 		this.artistService.addArtist(this.token, this.artist).subscribe(
 			res=>{
 

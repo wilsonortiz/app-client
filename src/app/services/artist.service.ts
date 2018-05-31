@@ -61,7 +61,7 @@ export class ArtistService {
 	}
 
 
-	public uddateArtist(token,id:string, artist:Artist){
+	public updateArtist(token,id:string, artist:Artist){
 		let body = JSON.stringify(artist);
 		let headers = new Headers({   
 			'Content-Type': 'application/json',

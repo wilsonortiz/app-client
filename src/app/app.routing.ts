@@ -5,6 +5,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 import { ArtistListComponent } from './components/artist-list/artist-list.component';
 import { ArtistAddComponent } from './components/artist-add/artist-add.component';
+import { ArtistEditComponent } from './components/artist-edit/artist-edit.component';
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
@@ -18,6 +19,9 @@ const appRoutes: Routes = [
 },
 {
 	path: 'crear-artista', component: ArtistAddComponent
+},
+{
+	path: 'editar-artista/:id', component: ArtistEditComponent
 },
 {
 	path: 'mis-datos', component: UserEditComponent
