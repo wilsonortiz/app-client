@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute, Params } from '@angular/router';
-import { UserService } from '../../services/user.service';
 import { Artist } from '../../models/artist';
 import { GLOBAL } from '../../services/global';
 
@@ -10,7 +9,7 @@ import { UserService } from '../../services/user.service';
 @Component({
 	selector: 'app-artist-detail',
 	templateUrl: './artist-detail.component.html',
-	provider:[UserService, ArtistService]
+	providers:[UserService, ArtistService]
 })
 export class ArtistDetailComponent implements OnInit {
 	public artist :Artist;
@@ -65,3 +64,4 @@ export class ArtistDetailComponent implements OnInit {
 				);
 		});
 	}
+}

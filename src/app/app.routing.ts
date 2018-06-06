@@ -10,6 +10,7 @@ import { ArtistDetailComponent } from './components/artist-detail/artist-detail.
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
+import { AlbumAddComponent } from './components/album-add/album-add.component';
 
 
 const appRoutes: Routes = [
@@ -27,6 +28,9 @@ const appRoutes: Routes = [
 },
 {
 	path: 'artista/:id', component: ArtistDetailComponent
+},
+{
+	path: 'crear-album/:artist', component: AlbumAddComponent
 },
 {
 	path: 'mis-datos', component: UserEditComponent
