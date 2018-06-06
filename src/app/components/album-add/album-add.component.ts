@@ -7,11 +7,12 @@ import { Album } from '../../models/album';
 
 import { ArtistService } from '../../services/artist.service';
 import { UserService } from '../../services/user.service';
+import { AlbumService } from '../../services/album.service';
 
 @Component({
 	selector: 'app-album-add',
 	templateUrl: './album-add.component.html',
-	providers:[ArtistService, UserService]
+	providers:[ArtistService, UserService, AlbumService]
 })
 export class AlbumAddComponent implements OnInit {
 	public title:string;
@@ -27,6 +28,8 @@ export class AlbumAddComponent implements OnInit {
 		private router: Router,
 		private userService: UserService,
 		private artistService: ArtistService,
+		private albumService: AlbumService,
+
 		) { 
 		this.title = 'Crear nuevo album';
 		this.identity = this.userService.getidentity();
@@ -44,6 +47,32 @@ export class AlbumAddComponent implements OnInit {
 		this.route.params.forEach((params:Params)=>{
 			let artistId= params['artist'];
 			this.album.artist = artistId;
+
+			this.albumService.addAlbum(this.token, this.album).subscribe(
+				res=>{
+
+					if(!res.album){
+						this.alertMessage='Error en el servidor';
+
+					}else{
+						this.alertMessage='El album se ha creado correctamente';
+						this.album= res.album;
+						this.router.navigate(['/editar-album', res.album._id]);
+					}
+
+				},
+				err =>{
+					var errorMessage = <any>err;
+
+					if(errorMessage!=null){
+						var body = JSON.parse(err._body);
+						this.alertMessage= body.message;
+						console.log(err);
+					}
+				}
+
+
+				);
 		});
 
 		console.log(this.album);
