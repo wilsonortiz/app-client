@@ -23,6 +23,11 @@ html, body{
 	position: absolute;
 }
 
+.seguro_album{
+	margin-top: -39px;
+	margin-left: 10px;
+}
+
 /*BARRA LATERAL*/
 
 .head-title{
