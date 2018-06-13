@@ -1,3 +1,18 @@
-<p>
-  album-detail works!
-</p>
+
+
+<div *ngIf="album" class="album_box">
+	<div id="album_head_card">
+
+		<div class="image">
+			<img src="{{url + 'get-image-album/'+ album.image}}">
+		</div>
+		<div class="data">
+			<strong>{{album.title}}</strong>
+			<p>{{album.year}}</p>	
+			<p>{{album.description}}</p>
+		</div>	
+		<a [routerLink]="['/crear-tema', album._id]"  *ngIf="identity.role == 'ROLE_ADMIN'" href="#" class="btn btn-default">
+			Añadir Canción
+		</a>
+	</div>
+</div>

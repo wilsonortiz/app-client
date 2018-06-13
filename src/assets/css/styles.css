@@ -97,7 +97,8 @@ html, body{
 	width: 100%;
 }
 
-#artist_head_card .image{
+#artist_head_card .image,
+#album_head_card .image{
 	width: 150px;
 	height: 150px;
 	overflow: hidden;
@@ -106,7 +107,8 @@ html, body{
 
 }
 
-#artist_head_card .image img{
+#artist_head_card .image img,
+#album_head_card .image img{
 	height: 130px;
 
 }
