@@ -30,4 +30,30 @@ export class SongService {
 		return this.http.post(this.url+'song', body, options).
 		pipe(map((res:Response) => res.json()));
 	}
+
+	public updateSong(token, idSong, song:Song){
+		
+		let body = JSON.stringify(song);
+		let headers = new Headers({   
+			'Content-Type': 'application/json',
+			'Authorization': token
+		});
+		let options = new RequestOptions({headers:headers});
+
+		return this.http.put(this.url+'song/'+ idSong, body, options).
+		pipe(map((res:Response) => res.json()));
+	}
+
+	public getSong(token, idSong){
+		
+		let headers = new Headers({   
+			'Content-Type': 'application/json',
+			'Authorization': token
+		});
+		let options = new RequestOptions({headers:headers});
+
+		return this.http.get(this.url+'song/'+ idSong, options).
+		pipe(map((res:Response) => res.json()));
+
+	}
 }
