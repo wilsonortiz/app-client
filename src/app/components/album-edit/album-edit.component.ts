@@ -81,7 +81,6 @@ export class AlbumEditComponent implements OnInit {
 		public onSubmit(){
 			this.route.params.forEach((params:Params)=>{
 				let id= params['id'];
-				debugger;
 
 				this.albumService.updateAlbum(this.token, id, this.album).subscribe(
 					res=>{
