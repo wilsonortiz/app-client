@@ -60,7 +60,7 @@ export class SongEditComponent implements OnInit {
 						this.alertMessage ='La canción se ha actualizado correctamente';
 
 						if(!this.filesToUpload){
-							this.router.navigate(['/album', res.song.album]);
+							this.router.navigate(['/album', response.song.album]);
 
 						}else{
 
@@ -69,7 +69,7 @@ export class SongEditComponent implements OnInit {
 						.then(
 							(result) =>{
 
-								this.router.navigate(['/album', res.song.album]);
+								this.router.navigate(['/album', response.song.album]);
 							},
 							(err) =>{
 								console.log(err);
