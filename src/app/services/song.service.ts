@@ -56,4 +56,34 @@ export class SongService {
 		pipe(map((res:Response) => res.json()));
 
 	}
+
+	public getSongs(token, idAlbum = null){
+		
+		let headers = new Headers({   
+			'Content-Type': 'application/json',
+			'Authorization': token
+		});
+		let options = new RequestOptions({headers:headers});
+
+		if(idAlbum==null){
+			return this.http.get(this.url+'songs', options).
+			pipe(map((res:Response) => res.json()));
+
+		}else{
+			return this.http.get(this.url+'songs/'+ idAlbum, options).
+			pipe(map((res:Response) => res.json()));
+		}
+
+	}
+
+	public deleteSong(token, id:string){
+		let headers = new Headers({   
+			'Content-Type': 'application/json',
+			'Authorization': token
+		});
+		let options = new RequestOptions({headers:headers});
+
+		return this.http.delete(this.url+'song'+ id, options).
+		pipe(map((res:Response) => res.json()));
+	}
 }
