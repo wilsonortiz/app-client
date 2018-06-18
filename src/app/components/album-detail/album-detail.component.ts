@@ -97,7 +97,7 @@ export class AlbumDetailComponent implements OnInit {
 		this.confirmado = id;
 	}
 
-	public onDeleleCancel(){
+	public onDeleteCancel(){
 		this.confirmado = null;
 	}
 
