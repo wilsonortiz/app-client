@@ -54,6 +54,8 @@ export class SongAddComponent implements OnInit {
 						this.alertMessage ='La canción se ha agregado correctamente';
 						this.song= response.song;
 
+						this.router.navigate(['/editar-tema', response.song._id]);
+
 					}
 				},
 				err =>{
