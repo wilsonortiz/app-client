@@ -118,7 +118,6 @@ export class AlbumDetailComponent implements OnInit {
 
 				if(errorMessage!=null){
 					var body = JSON.parse(err._body);
-					//this.alertMessage= body.message;
 					console.log(err);
 				}
 			}
