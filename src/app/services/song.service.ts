@@ -83,7 +83,7 @@ export class SongService {
 		});
 		let options = new RequestOptions({headers:headers});
 
-		return this.http.delete(this.url+'song'+ id, options).
+		return this.http.delete(this.url+'song/'+ id, options).
 		pipe(map((res:Response) => res.json()));
 	}
 }

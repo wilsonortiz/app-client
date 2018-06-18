@@ -2,31 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute, Params } from '@angular/router';
 
 import { Album } from '../../models/album';
+import { Song } from '../../models/song';
 
 import { GLOBAL } from '../../services/global';
 
 import { UserService } from '../../services/user.service';
 import { AlbumService } from '../../services/album.service';
+import { SongService } from '../../services/song.service';
 
 @Component({
 	selector: 'app-album-detail',
 	templateUrl: './album-detail.component.html',
-	providers: [UserService, AlbumService]
+	providers: [UserService, AlbumService, SongService]
 })
 export class AlbumDetailComponent implements OnInit {
 	public title:string;
+	public songs : Song[];
 	public album :Album;
 	public identity;
 	public token;
 	public url:string;
 	public alertMessage:string;
 	public confirmado;
-	
+
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
 		private userService : UserService,
-		private albumService: AlbumService) { 
+		private albumService: AlbumService,
+		private songService: SongService) { 
 
 		this.identity = this.userService.getidentity();
 		this.token = this.userService.getToken();
@@ -46,22 +50,22 @@ export class AlbumDetailComponent implements OnInit {
 
 			this.albumService.getAlbum(this.token, id).subscribe(
 				res=>{
-					debugger;
+
 					if(!res.albumStored){
 						this.router.navigate(['/']);
 
 					}else{
 						this.album= res.albumStored;
 
-/*
 						//Sacar los albun del artista
-						this.albumService.getAlbums(this.token, res.artist._id).subscribe(
+						this.songService.getSongs(this.token, res.albumStored._id).subscribe(
 							res=>{
 								
-								if(!res.albums){
-									this.alertMessage= 'Este artista no posee albums';
+								if(!res.songs){
+									this.alertMessage= 'Este album no posee canciones';
 								}else{
-									this.albums = res.albums;
+
+									this.songs = res.songs;
 								}
 
 							},
@@ -74,7 +78,6 @@ export class AlbumDetailComponent implements OnInit {
 									console.log(err);
 								}
 							});
-						}*/
 					}
 
 				},
@@ -83,12 +86,43 @@ export class AlbumDetailComponent implements OnInit {
 
 					if(errorMessage!=null){
 						var body = JSON.parse(err._body);
-						//this.alertMessage= body.message;
 						console.log(err);
 					}
 				}
 				);
 		});
+	}
+
+	public onDeleteConfirm(id){
+		this.confirmado = id;
+	}
+
+	public onDeleleCancel(){
+		this.confirmado = null;
+	}
+
+	public onDeleteSong(id){
+		this.songService.deleteSong(this.token, id).subscribe(
+			res => {
+
+				if(!res.song){
+					alert('Error en el servidor');
+
+				}else{
+					this.getAlbum();
+				}
+
+			},
+			err =>{
+				var errorMessage = <any>err;
+
+				if(errorMessage!=null){
+					var body = JSON.parse(err._body);
+					//this.alertMessage= body.message;
+					console.log(err);
+				}
+			}
+			);
 	}
 
 }
