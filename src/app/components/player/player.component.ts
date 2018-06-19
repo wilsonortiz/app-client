@@ -12,31 +12,33 @@ import { SongService } from '../../services/song.service';
 
 @Component({
 	selector: 'app-player',
-	template: `
+	template: 
+	`
 	<div class="album_image">
 	<span *ngIf="song.album">
-	<img id="play-image-album" src="{{ url + 'get-image-album/' + song.album.image}}" />
+	<img id="play_image_album" src="{{ url + 'get-image-album/' + song.album.image}}" />
 	</span>
 
 	<span *ngIf="!song.album">
-	<img id="play-image-album" src="assets/images/default.jpg" />
+	<img id="play_image_album" src="assets/images/default.jpg" />
 	</span>
 	</div>
-	<div class = "audio_file">
+
+	<div class="audio_file">
 	<p>Reproduciendo</p>
-	<span id="play_song_title"> 
+	<span id="play_song_title">
 	{{song.name}}
 	</span>
-	<span id="play_song_artist"> 
-	<span *ngIf="song.artist"></span>
+	|
+	<span id="play_song_artist">
+	<span *ngIf="song.album.artist">
 	{{song.album.artist.name}}
 	</span>
+	</span>
 	<audio controls id="player">
-	<source id="mp3_source" src"{{url + 'get-song-file/'+ song.file}} type="audio/mpeg" />
-	Tu navegador no es compatible
+	<source id="mp3_source" src="{{ url + 'get-song-file/' + song.file }}" type="audio/mpeg">
+	Tu navegador no es compatible con HTML5
 	</audio>
-
-
 	</div>
 
 	`
@@ -48,13 +50,20 @@ export class PlayerComponent implements OnInit {
 
 	constructor() {
 		this.url= GLOBAL.url;
-		this.song = new Song(1,"","","","");
-
 	}
 
 	ngOnInit() {
 
 		console.log('player cargado');
+
+		let song = JSON.parse(localStorage.getItem('sound_song'));
+		debugger;
+
+		if(song){
+			this.song= song;
+		}else{
+			this.song = new Song(1,"","","",""); 
+		}
 	}
 
 }

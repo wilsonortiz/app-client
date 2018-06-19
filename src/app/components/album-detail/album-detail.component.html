@@ -22,7 +22,7 @@
 		<ul id="songs_list">
 			<li class="song_item" *ngFor="let song of songs">
 				<div class="title">
-					<a class="btn btn-success">
+					<a class="btn btn-success" (click)="startPlayer(song)">
 						<span class="glyphicon glyphicon-play aria-hidden= true"></span>
 
 					</a>
