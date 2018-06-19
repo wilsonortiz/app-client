@@ -134,6 +134,7 @@ html, body{
 	padding: 0px;
 	margin-top: 30px;
 	list-style: none;
+	min-height: 400px;
 }
 
 .artist_item,
@@ -199,4 +200,41 @@ html, body{
 
 .song_item .btn-success{
 	margin-right: 10px;
+}
+
+/*player */
+
+.player{
+	background: #1C1C1F;
+	position: fixed;
+	width: 90.5%;
+	bottom: 0;
+	padding: 20px;
+	margin-left: -15px;
+	border-left: 1px solid #444;
+	color: gray;
+}
+
+.player .album_image{
+	float: left;
+	width: 138px;
+	height: 105px;
+	overflow: hidden;
+}
+
+.player .album_image img{
+	height: 100%;
+}
+
+.player .audio_file{
+	width: 85%;
+	height: 40px;
+	margin-top: 5px;
+	margin-left: 10px;
+	float: left;
+}
+
+.player audio{
+	width: 100%;
+	height: 40px;
 }
